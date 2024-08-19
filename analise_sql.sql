@@ -19,7 +19,7 @@ FROM `datario.adm_central_atendimento_1746.chamado`
 WHERE DATE(data_inicio) = '2023-04-01'
 GROUP BY id_bairro
 ORDER BY qtd_chamados_bairro DESC
-LIMIT 4
+LIMIT 4;
 
 SELECT *
 FROM `datario.dados_mestres.bairro`
