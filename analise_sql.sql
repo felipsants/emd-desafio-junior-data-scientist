@@ -33,3 +33,20 @@ ocorrências.
     3º : NULL - Chamados : 73
     4º : Barra da Tijuca, ID 128 - Chamados : 59
 */
+
+-- Questão 4: Qual o nome da subprefeitura com mais chamados abertos nesse dia?
+SELECT b.subprefeitura, COUNT(c.id_bairro) AS qtd_chamados_subprefeitura
+FROM datario.adm_central_atendimento_1746.chamado c
+JOIN datario.dados_mestres.bairro b
+ON c.id_bairro = b.id_bairro
+WHERE DATE(c.data_inicio) = '2023-04-01'
+GROUP BY b.subprefeitura
+ORDER BY qtd_chamados_subprefeitura DESC
+LIMIT 1;
+/*
+Resposta: Subprefeitura = Zona Norte, com 510 chamados.
+
+Nessa questão eu decidi usar alias pois estou trabalhando com duas fontes de dados
+que tem a mesma coluna id_bairro, assim facilita a leitura.
+*/
+
