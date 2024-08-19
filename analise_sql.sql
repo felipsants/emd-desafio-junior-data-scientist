@@ -60,3 +60,13 @@ LIMIT 50
 /* Resposta: 
     Sim, existe. Isso ocorre nas chamadas que são relacionadas ao transporte público, no caso
     ônibus, que não tem ligação com um lugar fisico, que no nosso caso de interesse seria um bairro.
+*/
+
+-- Questão 6: Quantos chamados com o subtipo "Perturbação do sossego" foram abertos desde 01/01/2022 até 31/12/2023 (incluindo extremidades)?
+SELECT subtipo, COUNT(*) AS qtd_chamados_pertubacao
+FROM `datario.adm_central_atendimento_1746.chamado`
+WHERE DATE(data_inicio) BETWEEN '2022-01-01' AND '2023-12-31'
+  AND subtipo = 'Perturbação do sossego'
+GROUP BY subtipo
+ORDER BY qtd_chamados_pertubacao DESC
+-- Resposta: Foram realizados 42830 chamados neste intervalo de datas com o subtipo Perturbação do sossego.
