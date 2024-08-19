@@ -70,3 +70,17 @@ WHERE DATE(data_inicio) BETWEEN '2022-01-01' AND '2023-12-31'
 GROUP BY subtipo
 ORDER BY qtd_chamados_pertubacao DESC
 -- Resposta: Foram realizados 42830 chamados neste intervalo de datas com o subtipo Perturbação do sossego.
+
+-- Questão 7:Selecione os chamados com esse subtipo que foram abertos durante os eventos contidos na tabela de eventos (Reveillon, Carnaval e Rock in Rio).
+SELECT *
+FROM `datario.adm_central_atendimento_1746.chamado` c
+JOIN `datario.turismo_fluxo_visitantes.rede_hoteleira_ocupacao_eventos` e
+ON DATE(c.data_inicio) = DATE(e.data_inicial)
+WHERE c.subtipo = 'Perturbação do sossego'
+  AND e.taxa_ocupacao IN (0.9554, 0.9251, 0.9451, 0.8184)
+ORDER BY e.data_inicial ASC
+/*
+    Resposta: Utilizei o taxa_ocupacao como paramêtro para localizar o eventos
+    pois existia eventos com o mesmo nome e isso iria me trazer problemas, por isso
+    decidi utilizar o taxa_ocupação.
+*/
