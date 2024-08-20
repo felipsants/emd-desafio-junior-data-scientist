@@ -132,3 +132,34 @@ LIMIT 4
     
     Evento com maior média: Rock In Rio (02-09-2022) = 122,0 
 */
+
+/* Questão 10: 
+    Compare as médias diárias de chamados abertos desse subtipo durante os eventos específicos
+    (Reveillon, Carnaval e Rock in Rio) e a média diária de chamados abertos
+    desse subtipo considerando todo o período de 01/01/2022 até 31/12/2023.
+*/
+WITH contador AS (
+  SELECT DATE(data_inicio) AS dia, COUNT(*) AS total_chamados_geral
+  FROM `datario.adm_central_atendimento_1746.chamado`
+  WHERE subtipo = 'Perturbação do sossego'
+    AND DATE(data_inicio) BETWEEN '2022-01-01' AND '2023-12-31'
+  GROUP BY dia
+),
+
+media_total AS (
+  SELECT AVG(total_chamados_geral) AS media_diaria_geral
+  FROM contador
+)
+
+SELECT media_diaria_geral
+FROM media_total
+ORDER BY media_diaria_geral DESC
+
+/*
+    Resposta: Média diaria geral : ~62.
+    É interessante comparar pois, temos praticamente o dobro da média no evento 
+    Rock In Rio, o que faz sentido já que a cidade está muito mais movimentada
+    do que o normal, mas vale lembrar que não é uma comparação tão justa, já que
+    o evento do Rock In Rio dura pouco dias e o periodo que usadmos para a média geral
+    é de quase dois anos, mas mesmo assim temos uma resultado interessante de se analisar.
+*/
