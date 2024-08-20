@@ -26,7 +26,7 @@ FROM `datario.dados_mestres.bairro`
 WHERE id_bairro IN ('144', '33','128')
 /*
 Resposta: Nesta questão, eu filtrei os 3 bairros com mais chamados, porém o 3º bairro não havia
-id de identificação, dessa forma eu desconsiderei o 3º colocado e fui para o 4º bairro com mais
+id de identificação do bairro, dessa forma eu desconsiderei o 3º colocado e fui para o 4º bairro com mais
 ocorrências.
     1º : Campo Grande, ID 144 - Chamados : 113
     2º : Tijuca, ID 33 - Chamados : 89
