@@ -89,17 +89,17 @@ ORDER BY e.data_inicial ASC
 SELECT c.evento, c.taxa_ocupacao,c.data_inicial, c.data_final, COUNT(*) AS qtd_chamados_eventos
 FROM datario.adm_central_atendimento_1746.chamado b
 JOIN datario.turismo_fluxo_visitantes.rede_hoteleira_ocupacao_eventos c
-ON DATE(b.data_inicio) = DATE(c.data_inicial)
+ON DATE(b.data_inicio) BETWEEN DATE(c.data_inicial) AND DATE(c.data_final)
 WHERE b.subtipo = 'Perturbação do sossego'
   AND c.taxa_ocupacao IN (0.9554, 0.9251, 0.9451, 0.8184)
 GROUP BY c.evento, c.taxa_ocupacao,c.data_inicial, c.data_final
 ORDER BY qtd_chamados_eventos DESC
 /*
     Resposta:
-        Rock In Rio ( 02-09-2022 ) : 100 Chamados
-        Rock In Rio ( 08-09-2022 ) : 77 Chamados
-        Carnaval ( 18-02-2023 ) : 74 Chamados
-        Reveillon ( 30-12-2022 ) : 44 Chamados
+        Rock In Rio ( 08-09-2022 ) : 468 Chamados
+        Rock In Rio ( 02-09-2022 ) : 366 Chamados
+        Carnaval ( 18-02-2023 ) : 241 Chamados
+        Reveillon ( 30-12-2022 ) : 139 Chamados
 
     Eu vi a necessidade de acrescentar a taxa_ocupacao, pelo fato que de há dois eventos
     com o mesmo nome, Rock In Rio.
