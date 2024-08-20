@@ -104,3 +104,31 @@ ORDER BY qtd_chamados_eventos DESC
     Eu vi a necessidade de acrescentar a taxa_ocupacao, pelo fato que de há dois eventos
     com o mesmo nome, Rock In Rio.
 */
+
+-- Questão 9: Qual evento teve a maior média diária de chamados abertos desse subtipo?
+WITH contador AS (
+  SELECT c.data_inicial ,c.evento,c.taxa_ocupacao ,DATE(b.data_inicio) AS dia, COUNT (*) AS total_chamados
+  FROM `datario.adm_central_atendimento_1746.chamado` b
+  JOIN `datario.turismo_fluxo_visitantes.rede_hoteleira_ocupacao_eventos` c
+  ON DATE(b.data_inicio) BETWEEN DATE(c.data_inicial) AND DATE(c.data_final)
+  WHERE b.subtipo = 'Perturbação do sossego'
+  GROUP BY c.data_inicial, c.evento,c.taxa_ocupacao, dia
+),
+
+media_dias AS(
+  SELECT data_inicial ,evento ,taxa_ocupacao, AVG(total_chamados) AS media_diaria
+  FROM contador
+  GROUP BY  data_inicial,evento, taxa_ocupacao
+)
+
+SELECT evento ,data_inicial, media_diaria,taxa_ocupacao
+FROM media_dias
+ORDER BY media_diaria DESC
+LIMIT 4
+/*
+    Resposta: Aqui eu criei duas CTE's para auxiliar na legibilidade do código,
+    então em contador eu faço a contagem em favor das condições e depois eu faço
+    a média.
+    
+    Evento com maior média: Rock In Rio (02-09-2022) = 122,0 
+*/
