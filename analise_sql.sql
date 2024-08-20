@@ -138,7 +138,31 @@ LIMIT 4
     (Reveillon, Carnaval e Rock in Rio) e a média diária de chamados abertos
     desse subtipo considerando todo o período de 01/01/2022 até 31/12/2023.
 */
-WITH contador AS (
+WITH 
+contador AS (
+  SELECT c.data_inicial, c.evento, c.taxa_ocupacao, DATE(b.data_inicio) AS dia, COUNT(*) AS total_chamados
+  FROM `datario.adm_central_atendimento_1746.chamado` b
+  JOIN `datario.turismo_fluxo_visitantes.rede_hoteleira_ocupacao_eventos` c
+  ON DATE(b.data_inicio) BETWEEN DATE(c.data_inicial) AND DATE(c.data_final)
+  WHERE b.subtipo = 'Perturbação do sossego'
+  GROUP BY c.data_inicial, c.evento, c.taxa_ocupacao, dia
+),
+
+media_dias AS (
+  SELECT data_inicial, evento, taxa_ocupacao, AVG(total_chamados) AS media_diaria
+  FROM contador
+  GROUP BY data_inicial, evento, taxa_ocupacao
+),
+
+-- Ordena em ordem Decrescente
+top_media_dias AS (
+  SELECT evento, data_inicial, media_diaria, taxa_ocupacao
+  FROM media_dias
+  ORDER BY media_diaria DESC
+  LIMIT 4
+),
+
+contador_geral AS (
   SELECT DATE(data_inicio) AS dia, COUNT(*) AS total_chamados_geral
   FROM `datario.adm_central_atendimento_1746.chamado`
   WHERE subtipo = 'Perturbação do sossego'
@@ -148,12 +172,29 @@ WITH contador AS (
 
 media_total AS (
   SELECT AVG(total_chamados_geral) AS media_diaria_geral
-  FROM contador
+  FROM contador_geral
 )
 
-SELECT media_diaria_geral
-FROM media_total
-ORDER BY media_diaria_geral DESC
+-- União entre os eventos e a "Media Geral"
+SELECT 
+  evento, 
+  data_inicial, 
+  media_diaria, 
+  taxa_ocupacao, 
+  NULL AS media_diaria_geral
+FROM 
+  top_media_dias
+
+UNION ALL
+
+SELECT 
+  'Media Geral' AS evento, 
+  NULL AS data_inicial, 
+  NULL AS media_diaria, 
+  NULL AS taxa_ocupacao, 
+  media_diaria_geral
+FROM 
+  media_total;
 
 /*
     Resposta: Média diaria geral : ~62.
