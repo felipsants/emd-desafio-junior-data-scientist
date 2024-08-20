@@ -55,11 +55,11 @@ SELECT *
 FROM `datario.adm_central_atendimento_1746.chamado`
 WHERE DATE(data_inicio) = '2023-04-01' 
   AND id_bairro IS NULL
-LIMIT 50
+LIMIT 100
 
 /* Resposta: 
-    Sim, existe. Isso ocorre nas chamadas que são relacionadas ao transporte público, no caso
-    ônibus, que não tem ligação com um lugar fisico, que no nosso caso de interesse seria um bairro.
+    Sim, existe. Isso ocorre nas chamadas que são relacionadas ao transporte público, atendimento ao publico, defesa do consumidor,
+    alvára, que não tem ligação com um lugar fisico, que no nosso caso de interesse seria um bairro.
 */
 
 -- Questão 6: Quantos chamados com o subtipo "Perturbação do sossego" foram abertos desde 01/01/2022 até 31/12/2023 (incluindo extremidades)?
