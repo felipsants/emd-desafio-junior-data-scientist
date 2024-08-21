@@ -51,7 +51,7 @@ que tem a mesma coluna id_bairro, assim facilita a leitura.
 */
 
 -- Questão 5: Existe algum chamado aberto nesse dia que não foi associado a um bairro ou subprefeitura na tabela de bairros?Se sim, por que isso acontece?
-SELECT *
+SELECT tipo,subtipo, data_inicio,id_bairro,
 FROM `datario.adm_central_atendimento_1746.chamado`
 WHERE DATE(data_inicio) = '2023-04-01' 
   AND id_bairro IS NULL
@@ -72,7 +72,7 @@ ORDER BY qtd_chamados_pertubacao DESC
 -- Resposta: Foram realizados 42830 chamados neste intervalo de datas com o subtipo Perturbação do sossego.
 
 -- Questão 7:Selecione os chamados com esse subtipo que foram abertos durante os eventos contidos na tabela de eventos (Reveillon, Carnaval e Rock in Rio).
-SELECT *
+SELECT c.id_chamado, c.tipo, c.subtipo, c.data_inicio, e.evento AS Evento_no_Dia,
 FROM `datario.adm_central_atendimento_1746.chamado` c
 JOIN `datario.turismo_fluxo_visitantes.rede_hoteleira_ocupacao_eventos` e
 ON DATE(c.data_inicio) = DATE(e.data_inicial)
