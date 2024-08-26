@@ -31,11 +31,11 @@
 	},
 	"3":{
 		"day":{
-			"description":"Cloudy",
+			"description":"Completely cloudy",
 			"image":"http://openweathermap.org/img/wn/03d@2x.png"
 		},
 		"night":{
-			"description":"Cloudy",
+			"description":"Completely cloudy",
 			"image":"http://openweathermap.org/img/wn/03n@2x.png"
 		}
 	},
