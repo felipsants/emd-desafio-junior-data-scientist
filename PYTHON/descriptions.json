@@ -1,7 +1,7 @@
 {
 	"0":{
 		"day":{
-			"description":"Sunny",
+			"description":"Completely Sunny",
 			"image":"http://openweathermap.org/img/wn/01d@2x.png"
 		},
 		"night":{
@@ -71,11 +71,11 @@
 	},
 	"53":{
 		"day":{
-			"description":"Drizzle",
+			"description":"Normal Drizzle",
 			"image":"http://openweathermap.org/img/wn/09d@2x.png"
 		},
 		"night":{
-			"description":"Drizzle",
+			"description":"Normal Drizzle",
 			"image":"http://openweathermap.org/img/wn/09n@2x.png"
 		}
 	},
