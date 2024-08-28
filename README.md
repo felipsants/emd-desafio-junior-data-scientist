@@ -30,7 +30,7 @@ Após isso, basta rodar o código usando Jupyter ( Logo, você deverá ter o Jup
 ### Análise API:
 Permita a instalação das bibliotecas quando rodar o código na primeira vez, depois disso você pode comentar a célula do `pip install`.
 
-Caso você vá rodar o código fora das pasta onde ele se encontra, lembre de deixar o arquivo `descriptions.json` na mesma pasta que o arquivo `analise_api.ipynb`.
+Caso você vá rodar o código fora da pasta onde ele se encontra, lembre de deixar o arquivo `descriptions.json` na mesma pasta que o arquivo `analise_api.ipynb`.
 
 Após isso, basta rodar o código.
 
