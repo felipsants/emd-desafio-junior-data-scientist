@@ -32,7 +32,7 @@ Permita a instalação das bibliotecas quando rodar o código na primeira vez, d
 
 Note que, temos sempre o uso de `billing_project_id=project_id`, em `project_id` deve colocar o id do `seu` projeto do BigQuery, caso não possua, deverá criar um. Ao passo que, na primeira vez em que o código for executado, abrirá uma aba no google, pedindo para que faça login em uma conta, certifique-se que está logando na conta que foi utilizada para criar o projeto no BigQuery.
 
-Após isso, basta rodar o código usando Jupyter ( Logo, você deverá ter o Jupyter instalado em sua máquina ).
+Após isso, basta rodar o código usando a sua IDE de preferência.
 
 ### Análise API:
 Permita a instalação das bibliotecas quando rodar o código na primeira vez, depois disso você pode comentar a célula do `pip install`.
