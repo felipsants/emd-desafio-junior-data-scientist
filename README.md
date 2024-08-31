@@ -13,7 +13,7 @@ Antes da instalação meu a versão do meu Python era 3.12.3, então decidi colo
 Instalar a versão do `basedosdados` 2.0.0b15.
 
 ## Como utilizar os códigos:
-Faça o clone deste repositório, para que você consiga usar tudo sem problemas, por exemplo eu fiz algumas alterações manuais no descriptions.json, então caso não utilize a minha versão, você encontrará resultados diferentes.
+Faça o clone deste repositório, para que você consiga usar tudo sem problemas, por exemplo eu fiz algumas alterações manuais no descriptions.json, então caso não utilize a minha versão, você encontrará resultados diferentes. Você irá precisar usar uma IDE ou editor de texto como o Visual Studio Code.
 
 ### Análise SQL:
 Copie todo o conteúdo do arquivo e rode numa consulta do BigQuery. 
@@ -22,6 +22,11 @@ Note que, todas as consultas de uma vez só irá consumir 4,69 GB da sua cota do
 
 ### Análise Python:
 Permita a instalação das bibliotecas quando rodar o código na primeira vez, depois disso você pode comentar a célula do `pip install`.
+
+- 1º Passo: Acesse [Console do Google Cloud](https://console.cloud.google.com/)
+- 2º Passo: Pesquise BigQuery na barra de pesquisa e clique
+- 3º Passo: Ao lado do icone do Google Cloud, você perceberá um campo de seleção, clique nele e crie um novo projeto
+- 4º Passo: Com o projeto criado você terá o seu project_id e está apto para rodar o código.
 
 Note que, temos sempre o uso de `billing_project_id=project_id`, em `project_id` deve colocar o id do `seu` projeto do BigQuery, caso não possua, deverá criar um.
 
